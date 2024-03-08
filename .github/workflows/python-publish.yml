@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v4
@@ -35,8 +35,8 @@ jobs:
           sudo apt-get install -y libopenblas-dev
         elif [ "$RUNNER_OS" == "macOS" ]; then
           echo "macOS setup"
-        elif [ "$RUNNER_OS" == "Windows" ]; then
-          echo "Windows setup"
+        # elif [ "$RUNNER_OS" == "Windows" ]; then
+        #   echo "Windows setup"
         fi
 
         python -m pip install --upgrade pip
