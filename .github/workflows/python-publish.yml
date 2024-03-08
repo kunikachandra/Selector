@@ -30,16 +30,17 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        if ($env:matrix_os -eq "ubuntu-latest") {
+        if [ "$RUNNER_OS" == "Linux" ]; then
           sudo apt-get update
           sudo apt-get install -y libopenblas-dev
-        }
-        elseif ($env:matrix_os -eq "macos-latest") {
-          Write-Host "macOS setup"
-        }
-        elseif ($env:matrix_os -eq "windows-latest") {
-          Write-Host "Windows setup"
-        }
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          echo "macOS setup"
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          echo "Windows setup"
+        fi
+
+      shell: bash
+
         python -m pip install --upgrade pip
         pip install build
     - name: Build package
