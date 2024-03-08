@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -34,11 +34,10 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y libopenblas-dev
           elif [ "$RUNNER_OS" == "macOS" ]; then
-            brew install gcc
-          elif [ "$RUNNER_OS" == "Windows" ]; then
-            echo "Windows setup"
+            brew install openblas
+          # elif [ "$RUNNER_OS" == "Windows" ]; then
+          #   echo "Windows setup"
           fi
-        shell: bash
 
           python -m pip install --upgrade pip
           pip install build
