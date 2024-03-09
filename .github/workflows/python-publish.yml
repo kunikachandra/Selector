@@ -31,16 +31,17 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
+        shell: bash
         run: |
-          # if [ "$RUNNER_OS" == "Linux" ]; then
-          #   sudo apt-get update
-          #   sudo apt-get install -y libopenblas-dev
-          # elif [ "$RUNNER_OS" == "macOS" ]; then
-          #   brew install openblas
-          #   OPENBLAS="$(brew --prefix openblas)" pip install scipy
-          # elif [ "$RUNNER_OS" == "Windows" ]; then
-          #   echo "Windows setup"
-          # fi
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            sudo apt-get update
+            sudo apt-get install -y libopenblas-dev
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            brew install openblas
+            OPENBLAS="$(brew --prefix openblas)" pip install scipy
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            echo "Windows setup"
+          fi
 
           python -m pip install --upgrade pip
           pip install -r requirements.txt
