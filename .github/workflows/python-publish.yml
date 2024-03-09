@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ["3.9", "3.10", "3.11"]
 
     steps:
@@ -56,7 +56,7 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
             python setup.py sdist bdist_wheel
-            twine upload dist/selector_test-${{ matrix.python-version }}-cp${{ matrix.python-version }}-${{ matrix.os }}-*.whl
+            twine upload dist/selector-test-${{ matrix.python-version }}-cp${{ matrix.python-version }}-${{ matrix.os }}-*.whl
 
 
       # - name: Build package
