@@ -37,8 +37,7 @@ try:
 except ValueError:
     long_description = short_description
 
-
-setup(
+package_metadata = dict(
     name="selector",
     author="QC-Devs Community",
     author_email="qcdevs@gmail.com",
@@ -46,7 +45,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     version="0.0.1",
-    license="GNU (Version 3)",
+    license="GNU General Public License v3 (GPLv3)",
     package_dir={"selector": "selector"},
     packages=["selector", "selector.methods", "selector.tests", "selector.methods.tests"],
     # Optional include package data to ship with your package
@@ -82,3 +81,17 @@ setup(
     # zip_safe=False,
     # todo: add classifiers
 )
+
+wheel_name_format = "{name}-{version}-{py_version}-none-any.whl"
+
+# Modify wheel file name based on the platform and Python version
+distname = wheel_name_format.format(
+    name=package_metadata["name"],
+    version=package_metadata["version"],
+    py_version="py" + "".join(map(str, sys.version_info[:2])) + sys.platform,
+    # platform=sys.platform,
+)
+
+package_metadata["distname"] = distname
+
+setup(**package_metadata)

@@ -56,13 +56,5 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
             python setup.py sdist bdist_wheel
-            twine upload dist/selector-test-${{ matrix.python-version }}-cp${{ matrix.python-version }}-${{ matrix.os }}-*.whl
-
-
-      # - name: Build package
-      #   run: python -m build
-      # - name: Publish package
-      #   uses: pypa/gh-action-pypi-publish@v1.8.0
-      #   with:
-      #     user: __token__
-      #     password: ${{ secrets.PYPI_API_TOKEN }}
+            # twine upload dist/*-${{ matrix.python-version }}-cp${{ matrix.python-version }}-${{ matrix.os }}-*.whl
+            twine upload dist/*

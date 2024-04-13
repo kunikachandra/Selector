@@ -23,8 +23,8 @@
 
 [project]
 # https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
-name = "selector-test"
-version = "0.0.5"
+name = "selector"
+version = "0.0.1"
 description = "Molecule selection with maximum diversity."
 readme = "README.md"
 #requires-python = ">=3.9,<4.0"
